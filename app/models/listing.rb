@@ -1,4 +1,4 @@
-class RentedProduct < ApplicationRecord
+class Listing < ApplicationRecord
     belongs_to :product
     belongs_to :user
 end

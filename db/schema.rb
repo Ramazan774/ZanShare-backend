@@ -12,7 +12,23 @@
 
 ActiveRecord::Schema.define(version: 2020_10_28_213622) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.string "title"
+    t.integer "rating"
+    t.text "description"
+    t.integer "price"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "products", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.string "address"
     t.text "description"
@@ -20,18 +36,6 @@ ActiveRecord::Schema.define(version: 2020_10_28_213622) do
     t.datetime "end_time"
     t.string "image_url"
     t.text "comment"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "rented_products", force: :cascade do |t|
-    t.string "title"
-    t.integer "rating"
-    t.text "description"
-    t.integer "price"
-    t.string "image_url"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

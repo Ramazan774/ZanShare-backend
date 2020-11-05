@@ -33,11 +33,5 @@ module DPostgresql
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-    config.generators do |g|
-      g.view_specs false
-      g.helper_specs false
-      g.test_unit false
-      g.test false
-    end
   end
 end

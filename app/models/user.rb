@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    # has_secure_password
+    has_secure_password
     has_many :products
-    has_many :rented_products, through: :products
+    has_many :listings, through: :products
 
 end
