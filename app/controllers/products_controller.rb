@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
     def destroy
         product = Product.find(params[:id])
         product.destroy
-        head :no_content
+        render json: {message: 'Successfully deleted'}
     end
 
     private
