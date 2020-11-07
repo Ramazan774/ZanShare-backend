@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :listings
-  resources :products
   resources :users
-  resources :user_listings
+  resources :products
+  resources :listings
 
-  post '/users/login', to: 'users#login'
-  get '/current_session', to: 'user#current_session'
+  post '/auth', to: 'auth#create'
+  get '/current_user', to: 'auth#show'
 end
