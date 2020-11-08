@@ -21,7 +21,7 @@ class UsersController < ApplicationController
             token = JWT.encode(payload, 'S3cr3t', 'HS256')
             render json: {id: user.id, email: user.email, token: token }
         else
-            render json: {error: 'Username has been taken'}
+            render json: {error: 'Email has been taken'}
         end
     end
 
