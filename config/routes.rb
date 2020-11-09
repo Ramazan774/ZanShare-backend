@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :products
   resources :listings
 
-  post '/auth', to: 'auth#create'
-  get '/current_user', to: 'auth#show'
+  post '/users/login', to: 'users#login'
+  get '/current_user', to: 'users#current_user'
 end

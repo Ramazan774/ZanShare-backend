@@ -13,10 +13,32 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def create
-        user = User.new(user_params)
+    def login
+        user = User.find_by(email: params[:email])
 
-        if user.save
+        if user && user.authenticate(params[:password])
+            payload = {user_id: user.id}
+            token = JWT.encode(payload, 'S3cr3t', 'HS256')
+            
+            render json: {user: user, token: token}
+        else
+            render(json: {error: 'Invalid email or password'})
+        end
+    end
+
+    def current_user
+        token = request.headers[:Authorization].split(' ')[1]
+        decoded_token = JWT.decode(token, 'S3cr3t', true, {algorithm: 'HS256'})
+        user_id = decoded_token[0]['user_id']
+        
+        user = User.find(user_id)
+        render json: {user: user}
+    end
+
+    def create
+        user = User.create(user_params)
+
+        if user.valid?
             payload = {id: user.id}
             token = JWT.encode(payload, 'S3cr3t', 'HS256')
             render json: {id: user.id, email: user.email, token: token }
