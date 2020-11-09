@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :listings
 
   post '/users/login', to: 'users#login'
-  get '/current_user', to: 'users#current_user'
+  get '/current_session', to: 'users#current_session'
 end
