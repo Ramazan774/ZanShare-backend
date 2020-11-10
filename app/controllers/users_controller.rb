@@ -20,7 +20,7 @@ class UsersController < ApplicationController
             payload = {user_id: user.id}
             token = JWT.encode(payload, 'S3cr3t', 'HS256')
             
-            render json: {id: user.id, email: user.email, token: token}
+            render json: {user: user, token: token}
         else
             render(json: {error: 'Invalid email or password'})
         end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         user_id = decoded_token[0]['user_id']
         
         user = User.find(user_id)
-        render json: {id: user.id, email: user.email, token: token}
+        render json: {user: user, token: token}
     end
 
     def create
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         if user.valid?
             payload = {id: user.id}
             token = JWT.encode(payload, 'S3cr3t', 'HS256')
-            render json: {id: user.id, email: user.email, token: token }
+            render json: {user: user, token: token }
         else
             render json: {error: 'Email has been taken'}
         end
