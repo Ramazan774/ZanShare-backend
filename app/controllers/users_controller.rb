@@ -32,7 +32,11 @@ class UsersController < ApplicationController
         user_id = decoded_token[0]['user_id']
         
         user = User.find(user_id)
-        render json: {user: user, token: token}
+        if user 
+            render json: {id: user.id, user: user, token: token}
+        else
+            render json: {error: "Invalid token"}
+        end
     end
 
     def create
