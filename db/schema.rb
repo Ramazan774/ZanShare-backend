@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2020_10_28_213622) do
     t.string "name"
     t.string "address"
     t.text "description"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.string "start_time"
+    t.string "end_time"
     t.string "image_url"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false

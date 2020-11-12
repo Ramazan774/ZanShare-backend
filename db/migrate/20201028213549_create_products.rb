@@ -5,8 +5,8 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :address
       t.text :description
-      t.datetime :start_time
-      t.datetime :end_time
+      t.string :start_time
+      t.string :end_time
       t.string :image_url
       t.text :comment
 
